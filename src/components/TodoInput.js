@@ -2,17 +2,27 @@ import React, { Component } from 'react'
 
 export default class TodoInput extends Component {
     render() {
+        const {item,handleChange,handleSubmit,editItem} = this.props;
+
         return (
-            <div>
-              {/* <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Submit</button>
-            </form> */}
+            <div className="card card-body">
+
+                <form onSubmit={handleSubmit}>
+                    <div className="input-group">
+                        <input 
+                        type="text" 
+                        className="form-control text-capitalize" 
+                        placeholder="Add todo items"
+                        value={item}
+                        onChange={handleChange}/>
+                    </div>
+                    <button type="submit" 
+                    disabled={item?false:true}
+                    className={editItem?"btn btn-warning btn-block mt-3":"btn btn-primary btn-block mt-3"}>
+                    {editItem?'Edit Item':' Add Item'}</button>
+
+                </form>
+             
             </div>
         )
     }
